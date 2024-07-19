@@ -1,15 +1,4 @@
-<?php
-session_start();
 
-include ('php/connect-db.php');
-
-if (!isset($_SESSION['id'])) {
-  $id_client = $_SESSION['id'];
-
-  header('Location: connexion.php');
-}
-
-?>
 <html>
 
 <head>
@@ -222,40 +211,7 @@ if (!isset($_SESSION['id'])) {
 
 
   <div id="game-area">
-    <?php
-    // Vérifier si l'utilisateur est connecté et récupérer son id
-    
-    if (isset($_SESSION['id'])) {
-      $id_client = $_SESSION['id'];
-
-      // Requête SQL pour sélectionner les transactions de l'utilisateur connecté
-      $requetes_wc = "SELECT * FROM user WHERE id = $id_client";
-      $resultzs_wc = mysqli_query($link, $requetes_wc);
-
-      // Vérifier s'il y a des résultats
-      if (mysqli_num_rows($resultzs_wc) > 0) {
-
-        //  le nombre de wach_coins 
-    
-        while ($row = mysqli_fetch_assoc($resultzs_wc)) {
-
-          echo '<div  class="wach_coins"><img src="icon/wach_coins.png" style="width: 1rem;"> ' . $row['wach_coins'] . '</div>';
-
-        }
-
-      } else {
-        echo '<div  style="color:white;">...</div>';
-      }
-
-      // Libérer le résultat de la requête
-      mysqli_free_result($resultzs_wc);
-
-    } else {
-      // Rediriger l'utilisateur vers la page de connexion s'il n'est pas connecté
-      header("Location: ../connexion.php");
-      exit();
-    }
-    ?>
+  
 
 
 
